@@ -51,7 +51,7 @@ class TempController extends Controller
     {
         $dataKeranjang = Temp::with('buku', 'buku.kategori')
             ->where('id_user', $user->id)->get();
-        if (count($dataKeranjang) == 0) {
+        if (count($data_keranjang) == 0) {
             return redirect()->route('member.index')->with('info', 'Tidak ada buku di keranjang.');
         }
         return view('member.data_keranjang', compact('data_keranjang'));
