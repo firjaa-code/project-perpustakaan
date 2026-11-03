@@ -55,8 +55,9 @@ Route::middleware(['auth', 'isMember'])->group(function() {
         Route::get('sedang-pinjam/{user}', [PinjamController::class, 'sedangPinjam'])->name('sedangPinjam');
         Route::get('riwayat-pinjam/{user}', [PinjamController::class, 'riwayatPinjam'])->name('riwayatPinjam');
         Route::get('/keranjang', [TempController::class, 'keranjang'])->name('keranjang');
-        Route::delete('/keranjang/{id}', [TempController::class, 'hapusKeranjang'])->name('hapusKeranjang');
-        
+        Route::delete('hapus-keranjang/{buku}/{user}', [TempController::class, 'hapusKeranjang'])->name('hapusKeranjang');
+        Route::post('simpan-booking', [TempController::class, 'simpanBooking'])->name('simpanBooking');
+        Route::get('booking-pdf/{user}', [BookingController::class, 'bookingPdf'])->name('bookingPdf'); 
     });
 });
 
