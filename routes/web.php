@@ -43,6 +43,16 @@ Route::prefix('admin/master')->name('admin.master.')->middleware(['auth', 'isAdm
     Route::put('user/reset-password/{user}', [UserController::class, 'resetPassword'])->name('user.resetPassword');
 });
 
+Route::prefix('admin/transaksi')->name('admin.transaksi.')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::resource('booking', BookingController::class);
+    Route::resource('peminjaman', PinjamController::class);
+    Route::get('pengembalian', [PinjamController::class, 'pengembalian_index'])->name('peminjaman.pengembalian');
+    Route::get('transaksi/peminjaman/data', [PinjamController::class, 'getData'])->name('peminjaman.data');
+    Route::get('export-pdf-pinjam', [PinjamController::class, 'exportPdfPinjam'])->name('pinjam.exportPdfPinjam');
+    Route::get('export-excel-pinjam', [PinjamController::class, 'exportExcelPinjam'])->name('pinjam.exportExcelPinjam');
+    Route::put('pinjam/kembalikanBuku/{no_pinjam}/{id_buku}', [PinjamController::class, 'kembalikanBuku'])->name('pinjam.kembalikanBuku');
+});
+
 Route::middleware(['auth', 'isMember'])->group(function() {
     Route::prefix('member')->name('member.')->group(function() {
         Route::get('/profil', [MemberController::class, 'tampilProfil'])->name('profil');

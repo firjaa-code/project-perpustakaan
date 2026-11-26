@@ -32,4 +32,19 @@ class BookingController extends Controller
         $pdf = Pdf::loadView('member.booking_pdf', compact('data_booking'));
         return $pdf->stream('data_booking.pdf');
     }
+
+    public function index()
+    {
+        $booking = Booking::with('anggota')->get();
+        return view('admin.booking.index', compact('booking'));
+    }
+
+    public function show(string $id)
+    {
+        $data_booking = Booking::with('booking_detail', 'booking_detail.buku', 'anggota')
+            ->where('id', $id)
+            ->get();
+
+        return view('admin.booking.show', compact('data_booking'));
+    }
 }

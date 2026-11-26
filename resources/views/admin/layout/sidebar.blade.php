@@ -47,6 +47,35 @@
           </li>
         </ul>
       </li>
+      <li class="nav-item has-treeview {{ request()->is('admin/transaksi/*') ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link {{ request()->is('admin/transaksi/*') ? 'active' : '' }}">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            Data Transaksi
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview bg-secondary">
+          <li class="nav-item">
+            <a href="{{ route('admin.transaksi.booking.index') }}" class="nav-link {{ Request::segment(3) == 'booking' ? 'active' : '' }}">
+              <i class="fas fa-solid fa-receipt nav-icon"></i>
+              <p>Booking</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.transaksi.peminjaman.index') }}" class="nav-link {{ Request::segment(3) == 'peminjaman' ? 'active' : '' }}">
+              <i class="fas fa-address-book nav-icon"></i>
+              <p>Peminjaman Buku</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('admin.transaksi.peminjaman.pengembalian') }}" class="nav-link {{ Request::segment(3) == 'pengembalian' ? 'active' : '' }}">
+              <i class="far fa-address-book nav-icon"></i>
+              <p>Pengembalian Buku</p>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
   <!-- /.sidebar-menu -->

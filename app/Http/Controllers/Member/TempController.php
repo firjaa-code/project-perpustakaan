@@ -49,7 +49,7 @@ class TempController extends Controller
 
     public function dataKeranjang(User $user)
     {
-        $dataKeranjang = Temp::with('buku', 'buku.kategori')
+        $data_keranjang = Temp::with('buku', 'buku.kategori')
             ->where('id_user', $user->id)->get();
         if (count($data_keranjang) == 0) {
             return redirect()->route('member.index')->with('info', 'Tidak ada buku di keranjang.');
@@ -110,7 +110,7 @@ class TempController extends Controller
         $latestBooking = max($latestBookingId, $latestPinjamId);
 
         //Membuat id_booking baru
-        $newBookingId = 'B' . $today . str_pad($latestBooking + 1, 3, '0', STR_PAD_LEFT);
+        $newIdBooking = 'B' . $today . str_pad($latestBooking + 1, 3, '0', STR_PAD_LEFT);
 
         //Tanggal booking dan Batas ambil
         $tgl_booking = Carbon::now();
